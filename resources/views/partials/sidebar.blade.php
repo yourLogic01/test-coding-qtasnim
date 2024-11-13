@@ -10,10 +10,11 @@
     <hr class="sidebar-divider my-0">
 
     <!-- Nav Item - Dashboard -->
-    <li class="nav-item active">
+    <li class="nav-item {{ request()->is('/') ? 'active' : '' }}">
         <a class="nav-link" href="/">
             <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Dashboard</span></a>
+            <span>Dashboard</span>
+        </a>
     </li>
 
     <!-- Divider -->
@@ -24,26 +25,36 @@
         Crud Menu
     </div>
 
-    <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item">
+    <!-- Nav Item - Items -->
+    <li class="nav-item {{ request()->is('items*') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('items.index') }}">
             <i class="fas fa-fw fa-box"></i>
-            <span>Items</span></a>
+            <span>Items</span>
+        </a>
     </li>
-    <li class="nav-item">
+
+    <!-- Nav Item - Transactions -->
+    <li class="nav-item {{ request()->is('transactions*') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('transactions.index') }}">
             <i class="fas fa-fw fa-money-bill-wave"></i>
-            <span>Transactions</span></a>
+            <span>Transactions</span>
+        </a>
     </li>
-    <li class="nav-item">
+
+    <!-- Nav Item - Type of Items -->
+    <li class="nav-item {{ request()->is('types*') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('types.index') }}">
             <i class="fas fa-fw fa-table"></i>
-            <span>Type of Items</span></a>
+            <span>Type of Items</span>
+        </a>
     </li>
-    <li class="nav-item">
+
+    <!-- Nav Item - Compare -->
+    <li class="nav-item {{ request()->is('compare*') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('compare.index') }}">
             <i class="fas fa-fw fa-sort-amount-up-alt"></i>
-            <span>Compare menu</span></a>
+            <span>Compare menu</span>
+        </a>
     </li>
 
     <!-- Divider -->
