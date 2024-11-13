@@ -10,11 +10,13 @@ class Item extends Model
     use HasFactory;
 
     protected $guarded = [];
-
-    public function type() {
-        return $this->belongsTo(TypeofItem::class);
+    public function type()
+    {
+        return $this->belongsTo(TypeofItem::class,'type_of_item_id');
     }
-    public function transactions() {
+
+    public function transactions()
+    {
         return $this->hasMany(Transaction::class);
     }
 }

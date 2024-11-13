@@ -8,9 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class TypeofItem extends Model
 {
     use HasFactory;
+    protected $table = 'type_of_items';
     protected $guarded = [];
 
-    public function type() {
+    public function items()
+    {
         return $this->hasMany(Item::class);
     }
 }
