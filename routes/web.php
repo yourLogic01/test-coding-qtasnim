@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CompareController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\TypeofItemController;
@@ -23,3 +24,4 @@ Route::get('/', function () {
 Route::resource('items', ItemController::class);
 Route::resource('transactions', TransactionController::class);
 Route::resource('types', TypeofItemController::class);
+Route::get('/compare', [CompareController::class, 'index'])->name('compare.index');

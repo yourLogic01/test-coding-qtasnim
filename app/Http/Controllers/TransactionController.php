@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Item;
 use App\Models\Transaction;
+use App\Models\TypeofItem;
 use Illuminate\Http\Request;
 
 class TransactionController extends Controller
