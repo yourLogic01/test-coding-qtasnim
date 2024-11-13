@@ -30,6 +30,11 @@
             <i class="fas fa-fw fa-box"></i>
             <span>Items</span></a>
     </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('transactions.index') }}">
+            <i class="fas fa-fw fa-money-bill-wave"></i>
+            <span>Transactions</span></a>
+    </li>
 
     <!-- Nav Item - Utilities Collapse Menu -->
     <li class="nav-item">
