@@ -11,10 +11,21 @@ class TransactionController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        // Ambil semua data transaksi dengan item terkait
-        $transactions = Transaction::with('item')->get();
+        $search = $request->input('search');
+        $sortBy = $request->input('sort_by', 'transaction_date'); // Default sorting by 'transaction_date'
+        $sortOrder = $request->input('sort_order', 'asc'); // Default order is ascending
+
+        // Fetch transactions with optional search and sorting
+        $transactions = Transaction::with('item')
+                    ->when($search, function ($query, $search) {
+                        return $query->whereHas('item', function ($q) use ($search) {
+                            $q->where('item_name', 'like', "%{$search}%");
+                        });
+                    })
+                    ->orderBy($sortBy, $sortOrder)
+                    ->get();
 
         return view('transactions.index', compact('transactions'));
     }
