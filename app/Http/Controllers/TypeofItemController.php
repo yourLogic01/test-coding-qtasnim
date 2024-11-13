@@ -12,7 +12,8 @@ class TypeofItemController extends Controller
      */
     public function index()
     {
-        //
+        $types = TypeOfItem::all();
+        return view('types.index', compact('types'));
     }
 
     /**
@@ -20,7 +21,7 @@ class TypeofItemController extends Controller
      */
     public function create()
     {
-        //
+        return view('types.create');
     }
 
     /**
@@ -28,7 +29,13 @@ class TypeofItemController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'type_name' => 'required|string|max:255',
+        ]);
+
+        TypeOfItem::create($request->all());
+
+        return redirect()->route('types.index')->with('success', 'Jenis Barang berhasil ditambahkan');
     }
 
     /**
@@ -42,24 +49,34 @@ class TypeofItemController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(TypeofItem $typeofItem)
+    public function edit(TypeofItem $type)
     {
-        //
+        $typeofItem = $type;
+        return view('types.edit', compact('typeofItem'));
+
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, TypeofItem $typeofItem)
+    public function update(Request $request, TypeofItem $type)
     {
-        //
+        $request->validate([
+            'type_name' => 'required|string|max:255',
+        ]);
+
+        $type->update($request->all());
+
+        return redirect()->route('types.index')->with('success', 'Jenis Barang berhasil diperbarui');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(TypeofItem $typeofItem)
+    public function destroy(TypeofItem $type)
     {
-        //
+        $type->delete();
+
+        return redirect()->route('types.index')->with('success', 'Jenis Barang berhasil dihapus');
     }
 }
