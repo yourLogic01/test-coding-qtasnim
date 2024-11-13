@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('layouts.main');
+    return redirect()->route('items.index');
 });
 
 Route::resource('items', ItemController::class);

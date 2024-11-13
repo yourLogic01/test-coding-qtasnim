@@ -11,9 +11,20 @@ class ItemController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $items = Item::with('type')->get();
+        $search = $request->input('search');
+        $sortBy = $request->input('sort_by', 'item_name'); // Default sorting by 'item_name'
+        $sortOrder = $request->input('sort_order', 'asc'); // Default order is ascending
+
+        // Fetch items with optional search and sorting
+        $items = Item::with('type')
+                    ->when($search, function ($query, $search) {
+                        return $query->where('item_name', 'like', "%{$search}%");
+                    })
+                    ->orderBy($sortBy, $sortOrder)
+                    ->get();
+
         return view('item.index', compact('items'));
     }
 
